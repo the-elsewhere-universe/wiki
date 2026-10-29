@@ -18,7 +18,8 @@ function nextRandom(state) {
 }
 
 function addHeadingItalics(heading) {
-  const letters = [...heading.textContent].filter(character => /\p{L}/u.test(character));
+  const characters = [...heading.textContent];
+  const letters = characters.filter(character => /\p{L}/u.test(character));
   if (!letters.length) return;
 
   const state = { value: headingSeed(heading.textContent) || 1 };
@@ -27,6 +28,35 @@ function addHeadingItalics(heading) {
   for (let start = 0; start < letters.length; start += 8) {
     const groupSize = Math.min(8, letters.length - start);
     selected.add(start + Math.floor(nextRandom(state) * groupSize));
+  }
+
+  const characterToLetter = new Map();
+  let mappedLetterIndex = 0;
+  characters.forEach((character, characterIndex) => {
+    if (/\p{L}/u.test(character)) {
+      characterToLetter.set(characterIndex, mappedLetterIndex);
+      mappedLetterIndex += 1;
+    }
+  });
+
+  for (const selectedLetter of [...selected]) {
+    const characterIndex = [...characterToLetter.entries()]
+      .find(([, letterIndex]) => letterIndex === selectedLetter)?.[0];
+    if (characterIndex === undefined) continue;
+
+    const selectedCharacter = characters[characterIndex].toLocaleLowerCase();
+    let before = characterIndex - 1;
+    let after = characterIndex + 1;
+
+    while (before >= 0 && characters[before].toLocaleLowerCase() === selectedCharacter) {
+      selected.add(characterToLetter.get(before));
+      before -= 1;
+    }
+
+    while (after < characters.length && characters[after].toLocaleLowerCase() === selectedCharacter) {
+      selected.add(characterToLetter.get(after));
+      after += 1;
+    }
   }
 
   let letterIndex = 0;
