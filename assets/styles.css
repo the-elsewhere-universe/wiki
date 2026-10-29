@@ -29,7 +29,7 @@ blockquote { font-weight:300; }
 .intro { padding:10vw 0; display:grid; grid-template-columns:1fr 2fr 1fr; gap:5vw; }
 .intro h2,.section-heading h2 { font-size:clamp(44px,5vw,76px); line-height:1; margin:0 0 2rem; }
 .intro-copy p { max-width:36em; font:300 22px/1.5 var(--serif); }
-.fact-list { align-self:end; background:var(--cream); padding:30px; display:grid; gap:28px; }
+.fact-list { align-self:end; background:var(--cream); padding:30px; display:grid; gap:28px; border-radius:8px; box-shadow:0 12px 32px rgba(29,33,30,.08),0 2px 6px rgba(29,33,30,.04); }
 .fact-list::before { content:'World in brief'; font-size:9px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
 .fact-list div { display:block; }
 .fact-list span { display:block; color:var(--muted); font-size:9px; text-transform:uppercase; letter-spacing:.12em; margin-bottom:3px; }
@@ -72,7 +72,7 @@ footer p:last-child { text-align:right; }
 .article-hero { padding:9vw 12vw 5vw; display:grid; grid-template-columns:2fr 1fr; align-items:end; gap:6vw; }
 .article-hero h1 { margin:.1em 0 0; font-size:clamp(90px,15vw,220px); line-height:.78; }
 .article-facts { margin:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
-.article-facts div { min-height:108px; background:var(--cream); padding:18px; display:flex; flex-direction:column; justify-content:space-between; }
+.article-facts div { min-height:108px; background:var(--cream); padding:18px; display:flex; flex-direction:column; justify-content:space-between; border-radius:7px; box-shadow:0 9px 24px rgba(29,33,30,.07),0 2px 5px rgba(29,33,30,.035); }
 .article-facts dt { color:var(--muted); font-size:9px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
 .article-facts dd { margin:0; font:400 20px/1.1 var(--serif); letter-spacing:-.02em; }
 .article-lead { margin:0 3.4vw; height:min(72vw,850px); background:radial-gradient(ellipse at 57% 47%,#675d4a 0 9%,transparent 10%),radial-gradient(ellipse at 53% 52%,#6b6654 0 20%,transparent 21%),linear-gradient(165deg,#c6bda7 0 45%,#7b7863 46% 70%,#52564b 71%); }
