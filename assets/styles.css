@@ -39,7 +39,7 @@ blockquote { font-weight:300; }
 .intro .section-number { color:rgba(244,241,232,.68); }
 .intro h2,.section-heading h2 { font-size:clamp(44px,5vw,76px); line-height:1; margin:0 0 2rem; }
 .intro-copy p { max-width:36em; font:300 22px/1.5 var(--serif); }
-.fact-list { align-self:end; background:var(--cream); padding:30px; display:grid; gap:28px; border:1px solid var(--cream-border); border-radius:8px; box-shadow:0 12px 32px rgba(29,33,30,.08),0 2px 6px rgba(29,33,30,.04); }
+.fact-list { align-self:start; position:sticky; top:110px; background:var(--cream); padding:30px; display:grid; gap:28px; border:1px solid var(--cream-border); border-radius:8px; box-shadow:0 12px 32px rgba(29,33,30,.08),0 2px 6px rgba(29,33,30,.04); }
 .fact-list::before { content:'World in brief'; font-size:9px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
 .fact-list div { display:block; }
 .fact-list span { display:block; color:var(--muted); font-size:9px; text-transform:uppercase; letter-spacing:.12em; margin-bottom:3px; }
@@ -129,6 +129,7 @@ footer p:last-child { text-align:right; }
   .intro { padding:18vw 0; }
   .intro .section-number { margin-bottom:2rem; }
   .fact-list { margin-top:3rem; }
+  .fact-list { position:static; }
   .place-grid { grid-template-columns:1fr; gap:12vw; }
   .place-card:nth-child(n) { margin-top:0; }
   .placeholder-landscape,.place-image { aspect-ratio:4/4.5; }
