@@ -87,6 +87,38 @@ function addHeadingItalics(heading) {
 
 document.querySelectorAll('h1, h2, h3').forEach(addHeadingItalics);
 
+const hero = document.querySelector('.hero');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const compactLayout = window.matchMedia('(max-width: 800px)');
+let parallaxFrame;
+
+function updateHeroParallax() {
+  parallaxFrame = undefined;
+  if (!hero || reducedMotion.matches || compactLayout.matches) {
+    hero?.style.setProperty('--hero-text-y', '0px');
+    hero?.style.setProperty('--hero-image-y', '0px');
+    return;
+  }
+
+  const travel = Math.min(Math.max(window.scrollY, 0), hero.offsetHeight * 1.25);
+  hero.style.setProperty('--hero-text-y', `${travel * -0.14}px`);
+  hero.style.setProperty('--hero-image-y', `${travel * -0.045}px`);
+}
+
+function requestHeroParallax() {
+  if (parallaxFrame === undefined) {
+    parallaxFrame = requestAnimationFrame(updateHeroParallax);
+  }
+}
+
+if (hero) {
+  updateHeroParallax();
+  window.addEventListener('scroll', requestHeroParallax, { passive: true });
+  window.addEventListener('resize', requestHeroParallax);
+  reducedMotion.addEventListener('change', requestHeroParallax);
+  compactLayout.addEventListener('change', requestHeroParallax);
+}
+
 if (button && nav) {
   button.addEventListener('click', () => {
     const open = button.getAttribute('aria-expanded') === 'true';
