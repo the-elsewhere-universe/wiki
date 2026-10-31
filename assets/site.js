@@ -97,12 +97,15 @@ function updateHeroParallax() {
   if (!hero || reducedMotion.matches || compactLayout.matches) {
     hero?.style.setProperty('--hero-text-y', '0px');
     hero?.style.setProperty('--hero-image-y', '0px');
+    hero?.style.setProperty('--hero-image-blur', '0px');
     return;
   }
 
   const travel = Math.min(Math.max(window.scrollY, 0), hero.offsetHeight * 1.25);
+  const blurProgress = Math.min(travel / hero.offsetHeight, 1);
   hero.style.setProperty('--hero-text-y', `${travel * -0.14}px`);
   hero.style.setProperty('--hero-image-y', `${travel * -(1 / 12)}px`);
+  hero.style.setProperty('--hero-image-blur', `${blurProgress * 6}px`);
 }
 
 function requestHeroParallax() {
