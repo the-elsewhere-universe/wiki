@@ -102,7 +102,7 @@ function updateHeroParallax() {
 
   const travel = Math.min(Math.max(window.scrollY, 0), hero.offsetHeight * 1.25);
   hero.style.setProperty('--hero-text-y', `${travel * -0.14}px`);
-  hero.style.setProperty('--hero-image-y', `${travel * -0.045}px`);
+  hero.style.setProperty('--hero-image-y', `${travel * -(1 / 12)}px`);
 }
 
 function requestHeroParallax() {
