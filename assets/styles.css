@@ -35,7 +35,7 @@ blockquote { font-weight:300; }
 .intro { padding:10vw 0; display:grid; grid-template-columns:1fr 2fr 1fr; gap:5vw; }
 .intro { color:var(--warm-white); border-color:rgba(244,241,232,.25); }
 .intro::before { background:var(--moss); }
-.intro h2 { color:var(--warm-white); }
+.intro h2 { color:var(--warm-white); border-left:1px solid rgba(244,241,232,.35); padding-left:clamp(20px,2.2vw,36px); }
 .intro .section-number { color:rgba(244,241,232,.68); }
 .intro h2,.section-heading h2 { font-size:clamp(44px,5vw,76px); line-height:1; margin:0 0 2rem; }
 .intro-copy p { max-width:36em; font:300 22px/1.5 var(--serif); }
@@ -50,7 +50,7 @@ blockquote { font-weight:300; }
 .places,.field-index { padding:8vw 0 10vw; }
 .section-heading { display:grid; grid-template-columns:1fr 3fr; margin-bottom:5vw; }
 .section-heading h2 { max-width:9em; }
-.section-heading > h2,.section-heading-copy { border-left:1px solid var(--rule); padding-left:clamp(20px,2.2vw,36px); }
+.section-heading > h2,.section-heading-copy > h2 { border-left:1px solid var(--rule); padding-left:clamp(20px,2.2vw,36px); }
 .section-heading-copy > p { max-width:38em; margin:0; color:var(--muted); font:300 19px/1.5 var(--serif); }
 .place-grid { display:grid; grid-template-columns:1.15fr .85fr 1fr; gap:2vw; align-items:start; }
 .place-card:nth-child(2) { margin-top:8vw; }
