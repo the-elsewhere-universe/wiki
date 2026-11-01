@@ -58,10 +58,14 @@ blockquote { font-weight:300; }
 .placeholder-landscape,.placeholder-fauna { background-color:#8f9489; overflow:hidden; position:relative; }
 .placeholder-landscape { aspect-ratio:4/5; }
 .place-image { aspect-ratio:4/5; overflow:hidden; }
-.place-image img { width:100%; height:100%; object-fit:cover; }
+.place-image img { width:100%; height:100%; object-fit:cover; transition:transform .55s cubic-bezier(.22,.61,.36,1),filter .45s ease; }
 .place-image--orra img { object-position:64% center; }
 .place-image--taqer img { object-position:68% center; }
 .place-image--namarain img { object-position:center; }
+@media (hover:hover) {
+  .place-card:is(:hover,:focus-within) .place-image img { transform:scale(1.05); }
+  .place-grid:has(.place-card:is(:hover,:focus-within)) .place-card:not(:is(:hover,:focus-within)) .place-image img { filter:grayscale(1); }
+}
 .placeholder-landscape:after,.placeholder-fauna:after { content:'Image forthcoming'; position:absolute; right:13px; bottom:11px; color:#fff; font-size:9px; text-transform:uppercase; letter-spacing:.13em; }
 .placeholder-landscape--coast { background:linear-gradient(165deg,#afb8b2 0 42%,#4d655e 43% 57%,#7d8b83 58% 64%,#3f5551 65%); }
 .placeholder-landscape--flood { background:linear-gradient(175deg,#b5ad92 0 47%,#747c64 48% 58%,#a0a68b 59% 66%,#5d7069 67%); }
