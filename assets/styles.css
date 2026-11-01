@@ -110,7 +110,7 @@ footer p:last-child { text-align:right; }
 .article-lead img { width:100%; height:100%; object-fit:cover; }
 .article-lead figcaption { position:absolute; left:15px; bottom:12px; color:#fff; text-transform:uppercase; font-size:9px; letter-spacing:.12em; }
 .article-body { max-width:1120px; margin:0 auto; padding:9vw 3vw 12vw; display:grid; grid-template-columns:220px minmax(0,650px); gap:8vw; }
-.article-toc { position:sticky; top:30px; align-self:start; display:flex; flex-direction:column; gap:.5rem; font-size:12px; }
+.article-toc { position:sticky; top:110px; align-self:start; display:flex; flex-direction:column; gap:.5rem; font-size:12px; }
 .article-toc p { text-transform:uppercase; letter-spacing:.1em; font-size:9px; color:var(--muted); }
 .article-prose { font:300 20px/1.65 var(--serif); }
 .article-prose .lede { font-size:32px; line-height:1.35; }
