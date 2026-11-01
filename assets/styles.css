@@ -88,6 +88,9 @@ blockquote { font-weight:300; }
 .index-list strong { font:400 30px var(--serif); transition:padding .2s; }
 .index-list span,.index-list i { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-style:normal; }
 .index-list i { text-align:right; }
+.index-list .status { justify-self:end; display:inline-flex; align-items:center; justify-content:center; min-width:62px; padding:6px 10px 5px; border-radius:999px; color:var(--warm-white); font-size:9px; font-weight:600; line-height:1; letter-spacing:.1em; }
+.status--canon { background:var(--moss); }
+.status--beta { background:#b76649; }
 .quote-section { background:var(--moss); color:#f3f0e7; text-align:center; padding:14vw 10vw; }
 .quote-section blockquote { font-size:clamp(42px,6vw,84px); line-height:1.04; max-width:15em; margin:0 auto; }
 .quote-section p { margin-top:3rem; font-size:10px; text-transform:uppercase; letter-spacing:.14em; opacity:.6; }
