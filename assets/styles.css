@@ -83,7 +83,7 @@ blockquote { font-weight:300; }
 .pronunciation span { padding:0 .4em; }
 .feature-copy > p:not(.eyebrow):not(.pronunciation) { font:300 21px/1.5 var(--serif); max-width:26em; }
 .index-list { border-top:1px solid var(--ink); }
-.index-list a { display:grid; grid-template-columns:70px 1.2fr 1fr 70px; gap:1rem; padding:22px 0; border-bottom:1px solid var(--rule); align-items:baseline; }
+.index-list a { display:grid; grid-template-columns:70px 1.2fr 1fr 70px; gap:1rem; padding:22px 0; border-bottom:1px solid var(--rule); align-items:center; }
 .index-list a:hover strong { padding-left:10px; }
 .index-list strong { font:400 30px var(--serif); transition:padding .2s; }
 .index-list span,.index-list i { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-style:normal; }
