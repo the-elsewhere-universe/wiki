@@ -3,6 +3,7 @@ const nav = document.querySelector('#site-nav');
 
 const hero = document.querySelector('.hero');
 const featureSection = document.querySelector('.feature');
+const featureImage = document.querySelector('.feature-image');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const compactLayout = window.matchMedia('(max-width: 800px)');
 let parallaxFrame;
@@ -25,14 +26,11 @@ function updateHeroParallax() {
     hero.style.setProperty('--hero-image-blur', `${blurProgress * 6}px`);
   }
 
-  if (featureSection) {
-    const rect = featureSection.getBoundingClientRect();
-    const headerOffset = document.querySelector('.site-header')?.offsetHeight ?? 0;
-    const focusDistance = window.innerHeight * 0.45;
-    const entering = Math.min(Math.max((window.innerHeight - rect.top) / focusDistance, 0), 1);
-    const leaving = Math.min(Math.max((rect.bottom - headerOffset) / focusDistance, 0), 1);
-    const clarity = Math.min(entering, leaving);
-    featureSection.style.setProperty('--feature-image-blur', `${(1 - clarity) * 6}px`);
+  if (featureSection && featureImage) {
+    const rect = featureImage.getBoundingClientRect();
+    const visibleHeight = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
+    const visibleRatio = Math.min(visibleHeight / rect.height, 1);
+    featureSection.style.setProperty('--feature-image-blur', `${(1 - visibleRatio) * 6}px`);
   }
 }
 
