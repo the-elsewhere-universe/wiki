@@ -8,6 +8,33 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const compactLayout = window.matchMedia('(max-width: 800px)');
 let parallaxFrame;
 
+function isLandingPage(url) {
+  const pathname = new URL(url, window.location.href).pathname;
+  return pathname === '/' || pathname.endsWith('/index.html');
+}
+
+function isTharvenArticle(url) {
+  return new URL(url, window.location.href).pathname.endsWith('/articles/tharven.html');
+}
+
+function isLandingToTharven(fromUrl, toUrl) {
+  return isLandingPage(fromUrl) && isTharvenArticle(toUrl);
+}
+
+window.addEventListener('pageswap', (event) => {
+  const destination = event.activation?.entry?.url;
+  if (event.viewTransition && (!destination || !isLandingToTharven(window.location.href, destination))) {
+    event.viewTransition.skipTransition();
+  }
+});
+
+window.addEventListener('pagereveal', (event) => {
+  const source = window.navigation?.activation?.from?.url;
+  if (event.viewTransition && (!source || !isLandingToTharven(source, window.location.href))) {
+    event.viewTransition.skipTransition();
+  }
+});
+
 function updateHeroParallax() {
   parallaxFrame = undefined;
   if (reducedMotion.matches || compactLayout.matches) {
