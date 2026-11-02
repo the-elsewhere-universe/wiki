@@ -83,10 +83,13 @@ blockquote { font-family:var(--serif); font-weight:300; letter-spacing:-.035em; 
 .pronunciation span { padding:0 .4em; }
 .feature-copy > p:not(.eyebrow):not(.pronunciation) { font:300 21px/1.5 var(--serif); max-width:26em; }
 .index-list { border-top:1px solid var(--ink); }
-.index-list a { display:grid; grid-template-columns:70px 1.2fr 1fr 70px; gap:1rem; padding:22px 0; border-bottom:1px solid var(--rule); align-items:center; }
+.index-list a { display:grid; grid-template-columns:54px 72px 1.2fr 1fr 70px; gap:1rem; padding:14px 0; border-bottom:1px solid var(--rule); align-items:center; }
 .index-list a:hover strong { padding-left:10px; }
 .index-list strong { font:400 30px var(--serif); transition:padding .2s; }
 .index-list span,.index-list i { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-style:normal; }
+.index-list .index-thumb { width:72px; aspect-ratio:4/3; overflow:hidden; border:1px solid var(--cream-border); border-radius:3px; background:var(--cream); }
+.index-list .index-thumb img { display:block; width:100%; height:100%; object-fit:cover; object-position:center; }
+.index-list .index-thumb--placeholder { background:linear-gradient(135deg,rgba(63,79,67,.14),rgba(63,79,67,.035) 52%,rgba(183,102,73,.11)); }
 .index-list i { text-align:right; }
 .index-list .status { justify-self:end; display:inline-flex; align-items:center; justify-content:center; min-width:62px; padding:6px 10px 5px; border-radius:999px; color:var(--warm-white); font-size:9px; font-weight:600; line-height:1; letter-spacing:.1em; }
 .status--canon { background:var(--moss); }
@@ -147,8 +150,9 @@ footer p:last-child { text-align:right; }
   .feature-image img { filter:none; transform:none; will-change:auto; }
   .feature-copy { padding:18vw 7vw; }
   .feature h2 { font-size:75px; }
-  .index-list a { grid-template-columns:40px 1fr auto; }
-  .index-list a span:nth-child(3) { display:none; }
+  .index-list a { grid-template-columns:32px 56px 1fr auto; gap:.75rem; }
+  .index-list .index-thumb { width:56px; }
+  .index-list .index-meta { display:none; }
   .index-list strong { font-size:25px; }
   footer { grid-template-columns:1fr; gap:20px; }
   footer p:last-child { text-align:left; }
