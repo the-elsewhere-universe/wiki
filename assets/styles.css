@@ -85,7 +85,7 @@ blockquote { font-family:var(--serif); font-weight:300; letter-spacing:-.035em; 
 .index-list { border-top:1px solid var(--ink); }
 .index-list a { display:grid; grid-template-columns:54px 72px 1.2fr 1fr 70px; gap:1rem; padding:14px 0; border-bottom:1px solid var(--rule); align-items:center; }
 .index-list a:hover strong { padding-left:10px; }
-.index-list strong { font:400 30px var(--serif); transition:padding .2s; }
+.index-list strong { font:400 34px/1 var(--display); transition:padding .2s; }
 .index-list span,.index-list i { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-style:normal; }
 .index-list .index-thumb { width:72px; aspect-ratio:4/3; overflow:hidden; border:1px solid var(--cream-border); border-radius:3px; background:var(--cream); }
 .index-list .index-thumb img { display:block; width:100%; height:100%; object-fit:cover; object-position:center; }
@@ -118,6 +118,17 @@ footer p:last-child { text-align:right; }
 .article-prose { font:300 20px/1.65 var(--serif); }
 .article-prose .lede { font-size:32px; line-height:1.35; }
 .article-prose h2 { font-size:55px; margin:1.4em 0 .25em; }
+
+@media (prefers-reduced-motion:no-preference) {
+  @view-transition { navigation:auto; }
+  .index-list a[href^="articles/tharven.html"] .index-thumb img,
+  .article-lead img { view-transition-name:tharven-image; }
+  .index-list a[href^="articles/tharven.html"] strong,
+  .article-hero h1 { view-transition-name:tharven-title; }
+  ::view-transition-group(tharven-image) { animation-duration:.72s; animation-timing-function:cubic-bezier(.22,.72,.18,1); }
+  ::view-transition-group(tharven-title) { animation-duration:.58s; animation-timing-function:cubic-bezier(.22,.72,.18,1); }
+  ::view-transition-old(root),::view-transition-new(root) { animation-duration:.38s; }
+}
 .article-prose blockquote { margin:2.5em 0; padding:0 0 0 1.2em; border-left:1px solid var(--ink); font-size:36px; line-height:1.25; }
 .editorial-note { margin-top:4rem; padding:24px; border:1px solid var(--rule); font-family:var(--sans); font-size:13px; }
 .editorial-note strong { text-transform:uppercase; letter-spacing:.1em; font-size:9px; }
