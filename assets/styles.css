@@ -103,7 +103,7 @@ footer p { margin:0; font-size:10px; text-transform:uppercase; letter-spacing:.1
 footer p:last-child { text-align:right; }
 
 .article-hero { padding:9vw 12vw 5vw; display:grid; grid-template-columns:minmax(0,1.7fr) minmax(260px,1fr); align-items:end; gap:6vw; }
-.article-hero h1 { margin:.1em 0 0; font-size:clamp(82px,10vw,156px); line-height:.82; }
+.article-hero h1 { margin:.1em 0 0; font-size:clamp(76px,9vw,146px); line-height:.82; }
 .article-facts { margin:0; padding:26px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px 32px; background:var(--cream); border:1px solid var(--cream-border); border-radius:8px; box-shadow:0 12px 32px rgba(29,33,30,.08),0 2px 6px rgba(29,33,30,.04); }
 .article-facts::before { content:'Field record'; grid-column:1 / -1; margin-bottom:2px; color:var(--moss); font:700 24px/1 var(--display); letter-spacing:normal; text-transform:none; }
 .article-facts div { min-height:0; padding:0; display:flex; flex-direction:column; gap:7px; }
@@ -118,6 +118,10 @@ footer p:last-child { text-align:right; }
 .article-prose { font:300 20px/1.65 var(--serif); }
 .article-prose .lede { font-size:32px; line-height:1.35; }
 .article-prose h2 { font-size:55px; margin:1.4em 0 .25em; }
+.article-prose h3 { margin:2.2em 0 .35em; font:700 28px/1.1 var(--display); color:var(--moss); }
+.article-prose ul { margin:1.2em 0 2em; padding-left:1.2em; }
+.article-prose li { margin:.45em 0; }
+.article-prose .pull-quote { margin:2.2em 0; padding-left:1.1em; border-left:1px solid var(--moss); font-size:32px; line-height:1.3; }
 
 @media (prefers-reduced-motion:no-preference) {
   @view-transition { navigation:auto; }
@@ -170,6 +174,17 @@ footer p:last-child { text-align:right; }
 .region-index-list a { display:grid; grid-template-columns:70px 1fr auto; gap:1rem; align-items:center; padding:22px 0; border-bottom:1px solid var(--rule); }
 .region-index-list strong { font:400 34px/1 var(--display); }
 .region-index-list span { color:var(--muted); font-size:10px; letter-spacing:.1em; text-transform:uppercase; }
+.region-feature { margin:9vw 0 0; display:grid; grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr); gap:5vw; align-items:center; }
+.region-feature--reverse { grid-template-columns:minmax(260px,.75fr) minmax(0,1.25fr); }
+.region-feature figure { margin:0; overflow:hidden; }
+.region-feature img { width:100%; aspect-ratio:4/3; object-fit:cover; }
+.region-feature h2 { margin:.15em 0 .35em; font-size:clamp(52px,7vw,105px); line-height:.88; }
+.region-feature p { font:300 21px/1.55 var(--serif); }
+.region-kicker { color:var(--muted); font:600 10px/1 var(--sans)!important; letter-spacing:.12em; text-transform:uppercase; }
+.region-stat-grid { margin-top:3rem; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid var(--ink); }
+.region-stat-grid div { padding:18px 12px 18px 0; border-bottom:1px solid var(--rule); }
+.region-stat-grid span { display:block; color:var(--muted); font-size:10px; letter-spacing:.1em; text-transform:uppercase; }
+.region-stat-grid strong { display:block; margin-top:.45rem; font:400 25px/1.1 var(--serif); }
 .article-lead--placeholder { display:grid; place-items:center; min-height:46vw; background:linear-gradient(135deg,var(--moss),#6f7a6d 55%,#b28b72); color:var(--warm-white); }
 .article-lead--placeholder span { font:400 clamp(54px,10vw,150px)/1 var(--display); opacity:.2; }
 .record-status { display:inline-flex; margin-top:1.5rem; padding:7px 11px 6px; border-radius:999px; background:var(--moss); color:var(--warm-white); font:600 10px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; }
@@ -187,7 +202,7 @@ footer p:last-child { text-align:right; }
   .hero-copy { padding:12vw 6vw 16vw; }
   .hero h1 { font-size:58px; }
   .image-note { top:calc(62vh - 55px); bottom:auto; }
-  .intro,.section-heading,.feature,.article-hero,.article-body,.region-intro { grid-template-columns:1fr; }
+  .intro,.section-heading,.feature,.article-hero,.article-body,.region-intro,.region-feature,.region-feature--reverse { grid-template-columns:1fr; }
   .intro { padding:18vw 0; }
   .intro .section-number { margin-bottom:2rem; }
   .fact-list { margin-top:3rem; }
@@ -218,6 +233,8 @@ footer p:last-child { text-align:right; }
   .region-hero-copy { inset:auto 6vw 10vw; }
   .region-hero h1 { font-size:25vw; }
   .region-body { padding:16vw 7vw 22vw; }
+  .region-feature--reverse figure { order:-1; }
+  .region-stat-grid { grid-template-columns:1fr; }
   .region-index-list a { grid-template-columns:42px 1fr; }
   .region-index-list a span:last-child { display:none; }
 }
