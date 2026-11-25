@@ -1,6 +1,34 @@
 const button = document.querySelector('.menu-button');
 const nav = document.querySelector('#site-nav');
 
+const articleHeader = document.querySelector('.article-page .article-hero');
+const articleLead = document.querySelector('.article-page .article-lead');
+let creatureHero;
+
+if (articleHeader && articleLead) {
+  creatureHero = document.createElement('section');
+  creatureHero.className = 'creature-hero';
+  creatureHero.setAttribute('aria-label', `${articleHeader.querySelector('h1')?.textContent || 'Creature'} overview`);
+  articleHeader.before(creatureHero);
+  creatureHero.append(articleLead, articleHeader);
+
+  const lede = document.querySelector('.article-prose .lede');
+  const status = articleHeader.querySelector('.record-status');
+  if (lede) {
+    const summary = document.createElement('p');
+    summary.className = 'creature-summary';
+    summary.textContent = lede.textContent;
+    if (status) status.before(summary);
+    else articleHeader.firstElementChild?.append(summary);
+  }
+
+  const gallery = document.createElement('section');
+  gallery.className = 'article-gallery';
+  gallery.setAttribute('aria-labelledby', 'field-images-title');
+  gallery.innerHTML = `<div class="article-gallery-heading"><p>Field images</p><h2 id="field-images-title">Further observations</h2></div><div class="article-gallery-grid"><figure><div class="gallery-placeholder gallery-placeholder--habitat" role="img" aria-label="Habitat study image forthcoming"></div><figcaption>01 · Habitat study</figcaption></figure><figure><div class="gallery-placeholder gallery-placeholder--behaviour" role="img" aria-label="Behaviour sequence image forthcoming"></div><figcaption>02 · Behaviour sequence</figcaption></figure><figure><div class="gallery-placeholder gallery-placeholder--detail" role="img" aria-label="Anatomy detail image forthcoming"></div><figcaption>03 · Anatomy detail</figcaption></figure></div>`;
+  creatureHero.after(gallery);
+}
+
 const hero = document.querySelector('.hero');
 const regionHero = document.querySelector('.region-hero');
 const featureSection = document.querySelector('.feature');
@@ -58,6 +86,9 @@ function updateHeroParallax() {
     regionHero?.style.setProperty('--region-text-y', '0px');
     regionHero?.style.setProperty('--region-image-y', '0px');
     regionHero?.style.setProperty('--region-image-blur', '0px');
+    creatureHero?.style.setProperty('--creature-text-y', '0px');
+    creatureHero?.style.setProperty('--creature-image-y', '0px');
+    creatureHero?.style.setProperty('--creature-image-blur', '0px');
     featureSection?.style.setProperty('--feature-image-blur', '0px');
     return;
   }
@@ -78,6 +109,14 @@ function updateHeroParallax() {
     regionHero.style.setProperty('--region-image-blur', `${blurProgress * 6}px`);
   }
 
+  if (creatureHero) {
+    const travel = Math.min(Math.max(window.scrollY, 0), creatureHero.offsetHeight * 1.25);
+    const blurProgress = Math.min(travel / creatureHero.offsetHeight, 1);
+    creatureHero.style.setProperty('--creature-text-y', `${travel * -0.14}px`);
+    creatureHero.style.setProperty('--creature-image-y', `${travel * -(1 / 12)}px`);
+    creatureHero.style.setProperty('--creature-image-blur', `${blurProgress * 6}px`);
+  }
+
   if (featureSection && featureImage) {
     const rect = featureImage.getBoundingClientRect();
     const visibleHeight = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
@@ -92,7 +131,7 @@ function requestHeroParallax() {
   }
 }
 
-if (hero || regionHero || featureSection) {
+if (hero || regionHero || creatureHero || featureSection) {
   updateHeroParallax();
   window.addEventListener('scroll', requestHeroParallax, { passive: true });
   window.addEventListener('resize', requestHeroParallax);
