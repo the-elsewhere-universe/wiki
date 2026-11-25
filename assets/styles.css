@@ -125,8 +125,20 @@ footer p:last-child { text-align:right; }
   .article-lead img { view-transition-name:tharven-image; }
   .index-list a[href^="articles/tharven.html"] strong,
   .article-hero h1 { view-transition-name:tharven-title; }
+  .place-card--orra .place-image img,.place-page--orra .region-hero > img { view-transition-name:orra-image; }
+  .place-card--orra h3,.place-page--orra .region-hero h1 { view-transition-name:orra-title; }
+  .place-card--orra a > p,.place-page--orra .region-hero-copy > p:last-child { view-transition-name:orra-description; }
+  .place-card--taqer .place-image img,.place-page--taqer .region-hero > img { view-transition-name:taqer-image; }
+  .place-card--taqer h3,.place-page--taqer .region-hero h1 { view-transition-name:taqer-title; }
+  .place-card--taqer a > p,.place-page--taqer .region-hero-copy > p:last-child { view-transition-name:taqer-description; }
+  .place-card--namarain .place-image img,.place-page--namarain .region-hero > img { view-transition-name:namarain-image; }
+  .place-card--namarain h3,.place-page--namarain .region-hero h1 { view-transition-name:namarain-title; }
+  .place-card--namarain a > p,.place-page--namarain .region-hero-copy > p:last-child { view-transition-name:namarain-description; }
   ::view-transition-group(tharven-image) { animation-duration:.72s; animation-timing-function:cubic-bezier(.22,.72,.18,1); }
   ::view-transition-group(tharven-title) { animation-duration:.58s; animation-timing-function:cubic-bezier(.22,.72,.18,1); }
+  ::view-transition-group(orra-image),::view-transition-group(taqer-image),::view-transition-group(namarain-image) { animation-duration:.82s; animation-timing-function:cubic-bezier(.22,.72,.18,1); }
+  ::view-transition-group(orra-title),::view-transition-group(taqer-title),::view-transition-group(namarain-title) { animation-duration:.72s; animation-timing-function:cubic-bezier(.22,.72,.18,1); }
+  ::view-transition-group(orra-description),::view-transition-group(taqer-description),::view-transition-group(namarain-description) { animation-duration:.64s; animation-timing-function:cubic-bezier(.22,.72,.18,1); }
   ::view-transition-old(root),::view-transition-new(root) { animation-duration:.38s; }
 }
 .article-prose blockquote { margin:2.5em 0; padding:0 0 0 1.2em; border-left:1px solid var(--ink); font-size:36px; line-height:1.25; }

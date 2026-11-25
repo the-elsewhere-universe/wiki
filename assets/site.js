@@ -22,16 +22,29 @@ function isLandingToTharven(fromUrl, toUrl) {
   return isLandingPage(fromUrl) && isTharvenArticle(toUrl);
 }
 
+function placeSlug(url) {
+  return new URL(url, window.location.href).pathname.match(/\/places\/(orra|taqer|namarain)\.html$/)?.[1];
+}
+
+function isLandingPlaceTransition(fromUrl, toUrl) {
+  return (isLandingPage(fromUrl) && Boolean(placeSlug(toUrl))) ||
+    (Boolean(placeSlug(fromUrl)) && isLandingPage(toUrl));
+}
+
+function isAllowedTransition(fromUrl, toUrl) {
+  return isLandingToTharven(fromUrl, toUrl) || isLandingPlaceTransition(fromUrl, toUrl);
+}
+
 window.addEventListener('pageswap', (event) => {
   const destination = event.activation?.entry?.url;
-  if (event.viewTransition && (!destination || !isLandingToTharven(window.location.href, destination))) {
+  if (event.viewTransition && (!destination || !isAllowedTransition(window.location.href, destination))) {
     event.viewTransition.skipTransition();
   }
 });
 
 window.addEventListener('pagereveal', (event) => {
   const source = window.navigation?.activation?.from?.url;
-  if (event.viewTransition && (!source || !isLandingToTharven(source, window.location.href))) {
+  if (event.viewTransition && (!source || !isAllowedTransition(source, window.location.href))) {
     event.viewTransition.skipTransition();
   }
 });
