@@ -97,7 +97,7 @@ blockquote { font-family:var(--serif); font-weight:300; letter-spacing:-.035em; 
 .quote-section { background:var(--moss); color:#f3f0e7; text-align:center; padding:14vw 10vw; }
 .quote-section blockquote { font-size:clamp(42px,6vw,84px); line-height:1.04; max-width:15em; margin:0 auto; }
 .quote-section p { margin-top:3rem; font-size:10px; text-transform:uppercase; letter-spacing:.14em; opacity:.6; }
-footer { padding:50px 3.4vw; border-top:1px solid var(--rule); display:grid; grid-template-columns:1fr 1fr 1fr; align-items:end; }
+footer { position:relative; z-index:2; padding:50px 3.4vw; border-top:1px solid var(--rule); display:grid; grid-template-columns:1fr 1fr 1fr; align-items:end; background:var(--paper); }
 footer .wordmark { font:600 12px/1 var(--sans); letter-spacing:.2em; text-transform:uppercase; }
 footer p { margin:0; font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); }
 footer p:last-child { text-align:right; }
@@ -171,7 +171,7 @@ footer p:last-child { text-align:right; }
 .article-prose blockquote { margin:2.5em 0; padding:0 0 0 1.2em; border-left:1px solid var(--ink); font-size:36px; line-height:1.25; }
 .editorial-note { margin-top:4rem; padding:24px; border:1px solid var(--rule); font-family:var(--sans); font-size:13px; }
 .editorial-note strong { text-transform:uppercase; letter-spacing:.1em; font-size:9px; }
-.article-next { padding:6vw 3.4vw; background:var(--cream); }
+.article-next { position:relative; z-index:1; padding:6vw 3.4vw; background:var(--cream); }
 .article-next > span { text-transform:uppercase; letter-spacing:.1em; font-size:9px; }
 .article-next a { display:flex; justify-content:space-between; font:300 clamp(60px,10vw,140px)/1 var(--serif); }
 .article-next i { font-style:normal; }
