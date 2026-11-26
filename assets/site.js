@@ -25,7 +25,56 @@ if (articleHeader && articleLead) {
   const gallery = document.createElement('section');
   gallery.className = 'article-gallery';
   gallery.setAttribute('aria-labelledby', 'field-images-title');
-  gallery.innerHTML = `<div class="article-gallery-heading"><p>Field images</p><h2 id="field-images-title">Further observations</h2></div><div class="article-gallery-grid"><figure><div class="gallery-placeholder gallery-placeholder--habitat" role="img" aria-label="Habitat study image forthcoming"></div><figcaption>01 · Habitat study</figcaption></figure><figure><div class="gallery-placeholder gallery-placeholder--behaviour" role="img" aria-label="Behaviour sequence image forthcoming"></div><figcaption>02 · Behaviour sequence</figcaption></figure><figure><div class="gallery-placeholder gallery-placeholder--detail" role="img" aria-label="Anatomy detail image forthcoming"></div><figcaption>03 · Anatomy detail</figcaption></figure></div>`;
+  gallery.innerHTML = `<h2 id="field-images-title" class="sr-only">Field image gallery</h2><div class="gallery-browser"><div class="gallery-thumbnails" aria-label="Select an image"></div><figure class="gallery-stage"><div class="gallery-stage-image"><img alt=""></div><figcaption><span class="gallery-caption"></span><span class="gallery-position" aria-live="polite"></span><span class="gallery-controls"><button type="button" class="gallery-previous" aria-label="Previous image">←</button><button type="button" class="gallery-next" aria-label="Next image">→</button></span></figcaption></figure></div>`;
+
+  const observations = [
+    ['Habitat study', 4, 3, '#51635a', '#b2a88e'],
+    ['Profile', 3, 4, '#665c50', '#b88c70'],
+    ['Group behaviour', 1, 1, '#344b43', '#8f9e87'],
+    ['Seasonal range', 16, 9, '#77745e', '#c8aa7d'],
+    ['Anatomy detail', 4, 5, '#3e514d', '#b6aa91'],
+    ['Movement study', 3, 2, '#6f5e50', '#a99178'],
+    ['Juvenile', 4, 3, '#657266', '#c6b896'],
+    ['Field scale', 2, 3, '#455853', '#8d7f69'],
+    ['Feeding', 1, 1, '#6c766b', '#b48269'],
+    ['Shelter', 16, 10, '#34473f', '#a69a7f'],
+    ['Close observation', 3, 4, '#7a6557', '#b1a489'],
+    ['Environmental context', 4, 3, '#50615a', '#c39b76']
+  ].map(([label, width, height, dark, light], index) => {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width * 240} ${height * 240}"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${dark}"/><stop offset="1" stop-color="${light}"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/><circle cx="${width * 150}" cy="${height * 82}" r="${Math.min(width, height) * 35}" fill="#f2f0e9" opacity=".16"/><path d="M0 ${height * 190} Q ${width * 90} ${height * 115} ${width * 240} ${height * 175} V ${height * 240} H0Z" fill="#172d26" opacity=".24"/></svg>`;
+    return { label, src: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`, index };
+  });
+
+  const thumbnailList = gallery.querySelector('.gallery-thumbnails');
+  const stageImage = gallery.querySelector('.gallery-stage img');
+  const caption = gallery.querySelector('.gallery-caption');
+  const position = gallery.querySelector('.gallery-position');
+  const thumbnailButtons = observations.map((observation) => {
+    const item = document.createElement('button');
+    item.type = 'button';
+    item.className = 'gallery-thumb';
+    item.setAttribute('aria-label', `View ${observation.label}`);
+    item.innerHTML = `<img src="${observation.src}" alt=""><span>${String(observation.index + 1).padStart(2, '0')}</span>`;
+    thumbnailList.append(item);
+    return item;
+  });
+
+  let selectedImage = 0;
+  function showGalleryImage(index, focusThumbnail = false) {
+    selectedImage = (index + observations.length) % observations.length;
+    const observation = observations[selectedImage];
+    stageImage.src = observation.src;
+    stageImage.alt = `${observation.label} placeholder`;
+    caption.textContent = observation.label;
+    position.textContent = `${String(selectedImage + 1).padStart(2, '0')} / ${String(observations.length).padStart(2, '0')}`;
+    thumbnailButtons.forEach((item, itemIndex) => item.setAttribute('aria-pressed', String(itemIndex === selectedImage)));
+    if (focusThumbnail) thumbnailButtons[selectedImage].focus({ preventScroll: true });
+  }
+
+  thumbnailButtons.forEach((item, index) => item.addEventListener('click', () => showGalleryImage(index)));
+  gallery.querySelector('.gallery-previous').addEventListener('click', () => showGalleryImage(selectedImage - 1, true));
+  gallery.querySelector('.gallery-next').addEventListener('click', () => showGalleryImage(selectedImage + 1, true));
+  showGalleryImage(0);
   creatureHero.after(gallery);
 }
 
