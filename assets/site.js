@@ -27,7 +27,7 @@ if (articleHeader && articleLead) {
   gallery.setAttribute('aria-labelledby', 'field-images-title');
   gallery.innerHTML = `<h2 id="field-images-title" class="sr-only">Field image gallery</h2><div class="gallery-browser"><div class="gallery-thumbnails" aria-label="Select an image"><div class="gallery-thumbnails-inner"></div></div><figure class="gallery-stage"><div class="gallery-stage-image"><img alt=""></div><figcaption><button type="button" class="gallery-previous" aria-label="Previous image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><span class="gallery-position" aria-live="polite"></span><button type="button" class="gallery-next" aria-label="Next image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></figcaption></figure></div>`;
 
-  const observations = [
+  const placeholderObservations = [
     ['Habitat study', 4, 3, '#51635a', '#b2a88e'],
     ['Profile', 3, 4, '#665c50', '#b88c70'],
     ['Group behaviour', 1, 1, '#344b43', '#8f9e87'],
@@ -40,10 +40,24 @@ if (articleHeader && articleLead) {
     ['Shelter', 16, 10, '#34473f', '#a69a7f'],
     ['Close observation', 3, 4, '#7a6557', '#b1a489'],
     ['Environmental context', 4, 3, '#50615a', '#c39b76']
-  ].map(([label, width, height, dark, light], index) => {
+  ].map(([label, width, height, dark, light]) => {
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width * 240} ${height * 240}"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${dark}"/><stop offset="1" stop-color="${light}"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/><circle cx="${width * 150}" cy="${height * 82}" r="${Math.min(width, height) * 35}" fill="#f2f0e9" opacity=".16"/><path d="M0 ${height * 190} Q ${width * 90} ${height * 115} ${width * 240} ${height * 175} V ${height * 240} H0Z" fill="#172d26" opacity=".24"/></svg>`;
-    return { label, src: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`, index };
+    return { label, src: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`, placeholder: true };
   });
+
+  const tharvenObservations = [
+    { label: 'Tharven in autumn forest, rear three-quarter view', src: '../assets/images/tharven-field-note.webp' },
+    { label: 'Tharven seen from the forest canopy', src: '../assets/images/tharven-canopy-view.webp' },
+    { label: 'Head and shield detail', src: '../assets/images/tharven-gallery-headshot.webp' },
+    { label: 'Adult pair in the Orran highlands', src: '../assets/images/tharven-article-hero.webp' },
+    { label: 'Profile of the protective neck shield', src: '../assets/images/tharven-gallery-profile.webp' },
+    { label: 'Tharven breathing in highland mist', src: '../assets/images/tharven-gallery-mist.webp' },
+    { label: 'Ward grazing on an upland plateau', src: '../assets/images/tharven-gallery-panorama-03.webp' },
+    { label: 'Resting adult above the waterfall country', src: '../assets/images/tharven-gallery-panorama-04.webp' }
+  ];
+
+  const observations = (window.location.pathname.endsWith('/articles/tharven.html') ? tharvenObservations : placeholderObservations)
+    .map((observation, index) => ({ ...observation, index }));
 
   const thumbnailList = gallery.querySelector('.gallery-thumbnails-inner');
   const stageImage = gallery.querySelector('.gallery-stage img');
@@ -63,7 +77,7 @@ if (articleHeader && articleLead) {
     selectedImage = (index + observations.length) % observations.length;
     const observation = observations[selectedImage];
     stageImage.src = observation.src;
-    stageImage.alt = `${observation.label} placeholder`;
+    stageImage.alt = observation.placeholder ? `${observation.label} placeholder` : observation.label;
     position.textContent = `${String(selectedImage + 1).padStart(2, '0')} / ${String(observations.length).padStart(2, '0')}`;
     thumbnailButtons.forEach((item, itemIndex) => item.setAttribute('aria-pressed', String(itemIndex === selectedImage)));
     if (focusThumbnail) thumbnailButtons[selectedImage].focus({ preventScroll: true });
