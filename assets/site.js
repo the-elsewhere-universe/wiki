@@ -25,7 +25,7 @@ if (articleHeader && articleLead) {
   const gallery = document.createElement('section');
   gallery.className = 'article-gallery';
   gallery.setAttribute('aria-labelledby', 'field-images-title');
-  gallery.innerHTML = `<h2 id="field-images-title" class="sr-only">Field image gallery</h2><div class="gallery-browser"><div class="gallery-thumbnails" aria-label="Select an image"><div class="gallery-thumbnails-inner"></div></div><figure class="gallery-stage"><div class="gallery-stage-image"><img alt=""></div><figcaption><button type="button" class="gallery-previous" aria-label="Previous image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><span class="gallery-position" aria-live="polite"></span><button type="button" class="gallery-next" aria-label="Next image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></figcaption></figure></div>`;
+  gallery.innerHTML = `<h2 id="field-images-title" class="sr-only">Field image gallery</h2><div class="gallery-browser"><div class="gallery-thumbnails" aria-label="Select an image"><div class="gallery-thumbnails-inner"></div></div><figure class="gallery-stage"><button type="button" class="gallery-stage-image" aria-label="Open image full screen"><img alt=""></button><figcaption><button type="button" class="gallery-previous" aria-label="Previous image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><span class="gallery-position" aria-live="polite"></span><button type="button" class="gallery-next" aria-label="Next image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></figcaption></figure></div><dialog class="gallery-lightbox" aria-label="Expanded gallery image"><button type="button" class="gallery-lightbox-close" aria-label="Close expanded image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button><img alt=""></dialog>`;
 
   const placeholderObservations = [
     ['Habitat study', 4, 3, '#51635a', '#b2a88e'],
@@ -60,8 +60,11 @@ if (articleHeader && articleLead) {
     .map((observation, index) => ({ ...observation, index }));
 
   const thumbnailList = gallery.querySelector('.gallery-thumbnails-inner');
+  const stageButton = gallery.querySelector('.gallery-stage-image');
   const stageImage = gallery.querySelector('.gallery-stage-image img');
   const position = gallery.querySelector('.gallery-position');
+  const lightbox = gallery.querySelector('.gallery-lightbox');
+  const lightboxImage = lightbox.querySelector('img');
   const thumbnailButtons = observations.map((observation) => {
     const item = document.createElement('button');
     item.type = 'button';
@@ -86,6 +89,15 @@ if (articleHeader && articleLead) {
   thumbnailButtons.forEach((item, index) => item.addEventListener('click', () => showGalleryImage(index)));
   gallery.querySelector('.gallery-previous').addEventListener('click', () => showGalleryImage(selectedImage - 1, true));
   gallery.querySelector('.gallery-next').addEventListener('click', () => showGalleryImage(selectedImage + 1, true));
+  stageButton.addEventListener('click', () => {
+    lightboxImage.src = stageImage.src;
+    lightboxImage.alt = stageImage.alt;
+    lightbox.showModal();
+  });
+  gallery.querySelector('.gallery-lightbox-close').addEventListener('click', () => lightbox.close());
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) lightbox.close();
+  });
   showGalleryImage(0);
 
   if (lede) {
