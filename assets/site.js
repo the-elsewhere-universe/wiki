@@ -60,7 +60,7 @@ if (articleHeader && articleLead) {
     .map((observation, index) => ({ ...observation, index }));
 
   const thumbnailList = gallery.querySelector('.gallery-thumbnails-inner');
-  const stageImageFrame = gallery.querySelector('.gallery-stage-image');
+  const stageImage = gallery.querySelector('.gallery-stage-image img');
   const position = gallery.querySelector('.gallery-position');
   const thumbnailButtons = observations.map((observation) => {
     const item = document.createElement('button');
@@ -73,48 +73,11 @@ if (articleHeader && articleLead) {
   });
 
   let selectedImage = 0;
-  let imageSwapToken = 0;
-
-  function swapStageImage(observation) {
-    const alt = observation.placeholder ? `${observation.label} placeholder` : observation.label;
-    const current = stageImageFrame.querySelector('img:last-child');
-    if (!current?.getAttribute('src')) {
-      current.src = observation.src;
-      current.alt = alt;
-      return;
-    }
-
-    const token = ++imageSwapToken;
-    const incoming = new Image();
-    incoming.alt = alt;
-    incoming.src = observation.src;
-    incoming.decode().catch(() => undefined).then(() => {
-      if (token !== imageSwapToken) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        stageImageFrame.replaceChildren(incoming);
-        return;
-      }
-
-      stageImageFrame.append(incoming);
-      const outgoingImages = [...stageImageFrame.querySelectorAll('img:not(:last-child)')];
-      incoming.animate([
-        { opacity: 0, transform: 'scale(.985)' },
-        { opacity: 1, transform: 'scale(1)' }
-      ], { duration: 340, easing: 'cubic-bezier(.22,.72,.18,1)', fill: 'both' });
-      outgoingImages.forEach((outgoing) => {
-        const animation = outgoing.animate([
-          { opacity: 1, transform: 'scale(1)' },
-          { opacity: 0, transform: 'scale(1.018)' }
-        ], { duration: 300, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both' });
-        animation.finished.then(() => outgoing.remove()).catch(() => outgoing.remove());
-      });
-    });
-  }
-
   function showGalleryImage(index, focusThumbnail = false) {
     selectedImage = (index + observations.length) % observations.length;
     const observation = observations[selectedImage];
-    swapStageImage(observation);
+    stageImage.src = observation.src;
+    stageImage.alt = observation.placeholder ? `${observation.label} placeholder` : observation.label;
     position.textContent = `${String(selectedImage + 1).padStart(2, '0')} / ${String(observations.length).padStart(2, '0')}`;
     thumbnailButtons.forEach((item, itemIndex) => item.setAttribute('aria-pressed', String(itemIndex === selectedImage)));
     if (focusThumbnail) thumbnailButtons[selectedImage].focus({ preventScroll: true });
