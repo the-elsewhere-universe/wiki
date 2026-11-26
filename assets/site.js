@@ -25,7 +25,7 @@ if (articleHeader && articleLead) {
   const gallery = document.createElement('section');
   gallery.className = 'article-gallery';
   gallery.setAttribute('aria-labelledby', 'field-images-title');
-  gallery.innerHTML = `<h2 id="field-images-title" class="sr-only">Field image gallery</h2><div class="gallery-browser"><div class="gallery-thumbnails" aria-label="Select an image"></div><figure class="gallery-stage"><div class="gallery-stage-image"><img alt=""></div><figcaption><span class="gallery-caption"></span><span class="gallery-position" aria-live="polite"></span><span class="gallery-controls"><button type="button" class="gallery-previous" aria-label="Previous image">←</button><button type="button" class="gallery-next" aria-label="Next image">→</button></span></figcaption></figure></div>`;
+  gallery.innerHTML = `<h2 id="field-images-title" class="sr-only">Field image gallery</h2><div class="gallery-browser"><div class="gallery-thumbnails" aria-label="Select an image"><div class="gallery-thumbnails-inner"></div></div><figure class="gallery-stage"><div class="gallery-stage-image"><img alt=""></div><figcaption><button type="button" class="gallery-previous" aria-label="Previous image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><span class="gallery-position" aria-live="polite"></span><button type="button" class="gallery-next" aria-label="Next image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></figcaption></figure></div>`;
 
   const observations = [
     ['Habitat study', 4, 3, '#51635a', '#b2a88e'],
@@ -45,9 +45,8 @@ if (articleHeader && articleLead) {
     return { label, src: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`, index };
   });
 
-  const thumbnailList = gallery.querySelector('.gallery-thumbnails');
+  const thumbnailList = gallery.querySelector('.gallery-thumbnails-inner');
   const stageImage = gallery.querySelector('.gallery-stage img');
-  const caption = gallery.querySelector('.gallery-caption');
   const position = gallery.querySelector('.gallery-position');
   const thumbnailButtons = observations.map((observation) => {
     const item = document.createElement('button');
@@ -65,7 +64,6 @@ if (articleHeader && articleLead) {
     const observation = observations[selectedImage];
     stageImage.src = observation.src;
     stageImage.alt = `${observation.label} placeholder`;
-    caption.textContent = observation.label;
     position.textContent = `${String(selectedImage + 1).padStart(2, '0')} / ${String(observations.length).padStart(2, '0')}`;
     thumbnailButtons.forEach((item, itemIndex) => item.setAttribute('aria-pressed', String(itemIndex === selectedImage)));
     if (focusThumbnail) thumbnailButtons[selectedImage].focus({ preventScroll: true });
