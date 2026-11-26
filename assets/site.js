@@ -53,7 +53,7 @@ if (articleHeader && articleLead) {
     item.type = 'button';
     item.className = 'gallery-thumb';
     item.setAttribute('aria-label', `View ${observation.label}`);
-    item.innerHTML = `<img src="${observation.src}" alt=""><span>${String(observation.index + 1).padStart(2, '0')}</span>`;
+    item.innerHTML = `<img src="${observation.src}" alt="">`;
     thumbnailList.append(item);
     return item;
   });

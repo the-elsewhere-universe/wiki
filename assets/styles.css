@@ -133,7 +133,6 @@ footer p:last-child { text-align:right; }
 .gallery-thumbnails-inner { columns:3 120px; column-gap:10px; }
 .gallery-thumb { position:relative; width:100%; margin:0 0 10px; padding:0; display:block; break-inside:avoid; overflow:hidden; border:0; border-radius:4px; background:var(--cream); cursor:pointer; }
 .gallery-thumb img { width:100%; height:auto; display:block; transition:filter .25s ease,transform .35s ease; }
-.gallery-thumb span { position:absolute; right:7px; bottom:5px; color:#fff; font-size:9px; letter-spacing:.1em; text-shadow:0 1px 5px #0009; }
 .gallery-thumb[aria-pressed="false"] img { filter:saturate(.55) brightness(.84); }
 .gallery-thumb[aria-pressed="true"] { outline:2px solid var(--moss); outline-offset:-2px; }
 .gallery-thumb:hover img { filter:none; transform:scale(1.025); }
