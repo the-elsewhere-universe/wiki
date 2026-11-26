@@ -124,6 +124,8 @@ footer p:last-child { text-align:right; }
 .creature-hero .record-status--beta { background:#b76649; color:#fff; }
 .creature-summary { max-width:38em; margin:1.25rem 0 0; font:300 20px/1.45 var(--serif); text-shadow:0 1px 12px #0008; }
 .creature-hero .article-facts { background:rgba(242,240,233,.94); color:var(--ink); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
+.article-introduction { position:relative; z-index:1; padding:8vw 3.4vw 2vw; background:var(--paper); }
+.article-introduction .lede { max-width:780px; margin:0 auto; text-align:left; font:300 clamp(28px,3vw,44px)/1.3 var(--serif); }
 .sr-only { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
 .article-gallery { position:relative; z-index:1; padding:6vw 3.4vw; background:var(--paper); }
 .gallery-browser { height:min(72vh,760px); min-height:520px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:2.4vw; }
@@ -264,6 +266,8 @@ footer p:last-child { text-align:right; }
   .creature-hero .article-hero h1 { font-size:21vw; }
   .creature-summary { font-size:17px; }
   .creature-hero .article-facts { padding:18px; gap:16px; }
+  .article-introduction { padding:14vw 6vw 4vw; }
+  .article-introduction .lede { font-size:28px; }
   .article-gallery { padding:12vw 6vw 16vw; }
   .gallery-browser { height:auto; min-height:0; grid-template-columns:1fr; }
   .gallery-thumbnails { height:38vh; order:2; }

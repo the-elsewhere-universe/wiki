@@ -73,7 +73,15 @@ if (articleHeader && articleLead) {
   gallery.querySelector('.gallery-previous').addEventListener('click', () => showGalleryImage(selectedImage - 1, true));
   gallery.querySelector('.gallery-next').addEventListener('click', () => showGalleryImage(selectedImage + 1, true));
   showGalleryImage(0);
-  creatureHero.after(gallery);
+
+  if (lede) {
+    const introduction = document.createElement('section');
+    introduction.className = 'article-introduction';
+    introduction.append(lede);
+    creatureHero.after(introduction, gallery);
+  } else {
+    creatureHero.after(gallery);
+  }
 }
 
 const hero = document.querySelector('.hero');
