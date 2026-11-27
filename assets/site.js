@@ -65,6 +65,7 @@ if (articleHeader && articleLead) {
   const position = gallery.querySelector('.gallery-position');
   const lightbox = gallery.querySelector('.gallery-lightbox');
   const lightboxImage = lightbox.querySelector('img');
+  let lightboxScrollPosition = 0;
   const thumbnailButtons = observations.map((observation) => {
     const item = document.createElement('button');
     item.type = 'button';
@@ -81,6 +82,10 @@ if (articleHeader && articleLead) {
     const observation = observations[selectedImage];
     stageImage.src = observation.src;
     stageImage.alt = observation.placeholder ? `${observation.label} placeholder` : observation.label;
+    if (lightbox.open) {
+      lightboxImage.src = stageImage.src;
+      lightboxImage.alt = stageImage.alt;
+    }
     position.textContent = `${String(selectedImage + 1).padStart(2, '0')} / ${String(observations.length).padStart(2, '0')}`;
     thumbnailButtons.forEach((item, itemIndex) => item.setAttribute('aria-pressed', String(itemIndex === selectedImage)));
     if (focusThumbnail) thumbnailButtons[selectedImage].focus({ preventScroll: true });
@@ -92,11 +97,29 @@ if (articleHeader && articleLead) {
   stageButton.addEventListener('click', () => {
     lightboxImage.src = stageImage.src;
     lightboxImage.alt = stageImage.alt;
+    lightboxScrollPosition = window.scrollY;
+    document.body.style.top = `-${lightboxScrollPosition}px`;
+    document.body.classList.add('gallery-lightbox-open');
     lightbox.showModal();
   });
   gallery.querySelector('.gallery-lightbox-close').addEventListener('click', () => lightbox.close());
   lightbox.addEventListener('click', (event) => {
     if (event.target === lightbox) lightbox.close();
+  });
+  lightbox.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      showGalleryImage(selectedImage + (event.key === 'ArrowLeft' ? -1 : 1));
+    }
+  });
+  lightbox.addEventListener('close', () => {
+    const root = document.documentElement;
+    const previousScrollBehavior = root.style.scrollBehavior;
+    document.body.classList.remove('gallery-lightbox-open');
+    document.body.style.top = '';
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo(0, lightboxScrollPosition);
+    requestAnimationFrame(() => { root.style.scrollBehavior = previousScrollBehavior; });
   });
   showGalleryImage(0);
 

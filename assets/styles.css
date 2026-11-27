@@ -129,7 +129,7 @@ footer p:last-child { text-align:right; }
 .sr-only { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
 .article-gallery { position:relative; z-index:1; padding:5vw 3.4vw 3.5vw; background:var(--paper); }
 .gallery-browser { height:min(72vh,760px); min-height:520px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:2.4vw; }
-.gallery-thumbnails { height:100%; padding-right:12px; overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:var(--rule) transparent; }
+.gallery-thumbnails { height:100%; padding-right:12px; overflow-x:hidden; overflow-y:auto; overscroll-behavior-y:auto; scrollbar-width:thin; scrollbar-color:var(--rule) transparent; }
 .gallery-thumbnails-inner { columns:3 120px; column-gap:10px; }
 .gallery-thumb { position:relative; width:100%; margin:0 0 10px; padding:0; display:block; break-inside:avoid; overflow:hidden; border:0; border-radius:4px; background:var(--cream); cursor:pointer; }
 .gallery-thumb img { width:100%; height:auto; display:block; transition:filter .25s ease,transform .35s ease; }
@@ -153,6 +153,7 @@ footer p:last-child { text-align:right; }
 .gallery-lightbox-close { position:absolute; top:24px; right:24px; z-index:1; width:48px; height:48px; padding:0; display:grid; place-items:center; border:1px solid rgba(255,255,255,.35); border-radius:50%; background:rgba(10,13,11,.45); color:#fff; cursor:pointer; }
 .gallery-lightbox-close svg { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; }
 .gallery-lightbox-close:hover { background:#fff; color:var(--ink); }
+body.gallery-lightbox-open { position:fixed; width:100%; overflow:hidden; }
 .article-body { position:relative; z-index:1; max-width:none; margin:0; padding:7vw max(3vw,calc((100vw - 1120px)/2)) 10vw; display:grid; grid-template-columns:220px minmax(0,650px); gap:8vw; background:var(--moss); color:var(--warm-white); }
 .article-toc { position:sticky; top:110px; align-self:start; display:flex; flex-direction:column; gap:.5rem; font-size:12px; }
 .article-toc p { text-transform:uppercase; letter-spacing:.1em; font-size:9px; color:rgba(244,241,232,.6); }
