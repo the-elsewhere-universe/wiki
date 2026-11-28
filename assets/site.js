@@ -1,9 +1,10 @@
 const button = document.querySelector('.menu-button');
 const nav = document.querySelector('#site-nav');
 
-document.querySelectorAll('.region-tabs').forEach((tabGroup) => {
-  const tabs = [...tabGroup.querySelectorAll('[role="tab"]')];
-  const panels = [...tabGroup.querySelectorAll('[role="tabpanel"]')];
+document.querySelectorAll('[data-tabs]').forEach((tabGroup) => {
+  const tabList = tabGroup.querySelector(':scope > [role="tablist"]');
+  const tabs = tabList ? [...tabList.querySelectorAll(':scope > [role="tab"]')] : [];
+  const panels = [...tabGroup.querySelectorAll(':scope > [role="tabpanel"]')];
 
   function activateRegionTab(tab, moveFocus = false) {
     tabs.forEach((item) => {

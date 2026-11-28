@@ -231,6 +231,17 @@ body.gallery-lightbox-open { position:fixed; width:100%; overflow:hidden; }
 .region-tab-panel[hidden] { display:none; }
 .region-tab-panel > .region-feature:first-child { margin-top:6vw; }
 .region-tab-panel--empty { min-height:28vw; }
+.region-overview { padding:6vw 0 4vw; display:grid; grid-template-columns:minmax(220px,.7fr) minmax(0,1.3fr); gap:6vw; border-bottom:1px solid var(--rule); align-items:start; }
+.region-overview h2 { max-width:7em; margin:.15em 0 0; font-size:clamp(44px,5vw,76px); line-height:.92; }
+.region-overview > div:last-child { max-width:44em; }
+.region-overview > div:last-child p { margin:0 0 1.1em; font:300 21px/1.55 var(--serif); }
+.region-subtabs { padding-top:clamp(28px,3vw,48px); }
+.region-subtab-list { display:flex; flex-wrap:wrap; gap:10px; }
+.region-subtab-list button { padding:10px 16px 11px; border:1px solid var(--cream-border); border-radius:999px; background:var(--cream); color:var(--muted); font:500 12px/1 var(--sans); cursor:pointer; }
+.region-subtab-list button[aria-selected="true"] { border-color:var(--moss); background:var(--moss); color:var(--warm-white); }
+.region-subtab-list button:focus-visible { outline:2px solid var(--moss); outline-offset:3px; }
+.region-subtab-panel { min-height:clamp(52px,7vw,110px); }
+.region-subtab-panel[hidden] { display:none; }
 .region-index { margin-top:10vw; }
 .region-index > p { font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
 .region-index h2 { max-width:10em; margin:.2em 0 .7em; font-size:clamp(60px,8vw,120px); line-height:.85; }
@@ -268,7 +279,7 @@ body.gallery-lightbox-open { position:fixed; width:100%; overflow:hidden; }
   .hero-copy { padding:12vw 6vw 16vw; }
   .hero h1 { font-size:58px; }
   .image-note { top:calc(62vh - 55px); bottom:auto; }
-  .intro,.section-heading,.feature,.article-hero,.article-body,.region-intro,.region-feature,.region-feature--reverse { grid-template-columns:1fr; }
+  .intro,.section-heading,.feature,.article-hero,.article-body,.region-intro,.region-overview,.region-feature,.region-feature--reverse { grid-template-columns:1fr; }
   .intro { padding:18vw 0; }
   .intro .section-number { margin-bottom:2rem; }
   .fact-list { margin-top:3rem; }
