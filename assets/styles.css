@@ -220,6 +220,17 @@ body.gallery-lightbox-open { position:fixed; width:100%; overflow:hidden; }
 .region-intro .region-notes dl { gap:1.25rem; }
 .region-intro .region-notes div { display:block; }
 .region-intro .region-notes dd { margin:.25rem 0 0; }
+.region-tabs { margin-top:clamp(64px,6vw,104px); }
+.region-tab-list { display:flex; gap:clamp(24px,3vw,48px); overflow-x:auto; border-bottom:1px solid var(--rule); scrollbar-width:none; }
+.region-tab-list::-webkit-scrollbar { display:none; }
+.region-tab-list button { position:relative; flex:none; padding:0 0 18px; border:0; background:none; color:var(--muted); font:600 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; cursor:pointer; }
+.region-tab-list button::after { content:''; position:absolute; right:0; bottom:-1px; left:0; height:2px; background:var(--moss); transform:scaleX(0); transform-origin:left; transition:transform .25s ease; }
+.region-tab-list button[aria-selected="true"] { color:var(--moss); }
+.region-tab-list button[aria-selected="true"]::after { transform:scaleX(1); }
+.region-tab-list button:focus-visible { outline:2px solid var(--moss); outline-offset:5px; }
+.region-tab-panel[hidden] { display:none; }
+.region-tab-panel > .region-feature:first-child { margin-top:6vw; }
+.region-tab-panel--empty { min-height:28vw; }
 .region-index { margin-top:10vw; }
 .region-index > p { font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
 .region-index h2 { max-width:10em; margin:.2em 0 .7em; font-size:clamp(60px,8vw,120px); line-height:.85; }
@@ -231,6 +242,8 @@ body.gallery-lightbox-open { position:fixed; width:100%; overflow:hidden; }
 .region-feature--reverse { grid-template-columns:repeat(2,minmax(0,1fr)); }
 .region-feature figure { margin:0; overflow:hidden; }
 .region-feature img { width:100%; aspect-ratio:4/3; object-fit:cover; }
+.region-feature-placeholder { position:relative; aspect-ratio:4/3; background:linear-gradient(145deg,#758078,var(--moss) 58%,#28352d); }
+.region-feature-placeholder::after { content:'Image forthcoming'; position:absolute; right:16px; bottom:14px; color:rgba(244,241,232,.72); font:600 9px/1 var(--sans); letter-spacing:.12em; text-transform:uppercase; }
 .region-feature h2 { margin:.15em 0 .35em; font-size:clamp(44px,5vw,76px); line-height:.92; }
 .region-feature p { font:300 21px/1.55 var(--serif); }
 .region-kicker { color:var(--muted); font:600 10px/1 var(--sans)!important; letter-spacing:.12em; text-transform:uppercase; }
