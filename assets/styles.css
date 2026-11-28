@@ -217,6 +217,9 @@ body.gallery-lightbox-open { position:fixed; width:100%; overflow:hidden; }
 .region-notes div { display:grid; grid-template-columns:100px 1fr; gap:1rem; }
 .region-notes dt { color:var(--muted); font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; }
 .region-notes dd { margin:0; font-family:var(--serif); font-size:18px; }
+.region-intro .region-notes dl { gap:1.25rem; }
+.region-intro .region-notes div { display:block; }
+.region-intro .region-notes dd { margin:.25rem 0 0; }
 .region-index { margin-top:10vw; }
 .region-index > p { font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
 .region-index h2 { max-width:10em; margin:.2em 0 .7em; font-size:clamp(60px,8vw,120px); line-height:.85; }
